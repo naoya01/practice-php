@@ -10,7 +10,9 @@
   <?php 
     $db = new mysqli('localhost:8889','root', 'root','mydb');
     /* new mysqli('host:ポート番号','username', 'password','データベース名') */
-    echo ' DBに接続しました';
+      $db->query('drop table if exists test');
+      $db->query('create table test(id INT)');
+    echo ' テーブルを削除して作成しました.';
   ?>
 </body>
 </html>
