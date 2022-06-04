@@ -11,8 +11,13 @@
     $db = new mysqli('localhost:8889','root', 'root','mydb');
     /* new mysqli('host:ポート番号','username', 'password','データベース名') */
       $db->query('drop table if exists test');
-      $db->query('create table test(id INT)');
-    echo ' テーブルを削除して作成しました.';
+      $success = $db->query('create table test(id INT)');
+      if ($success){
+        echo ' テーブルを削除して作成しました.';
+      } else {
+        echo '失敗しました';
+        echo $db->error;
+      }
   ?>
 </body>
 </html>
