@@ -10,10 +10,10 @@
   <?php 
     $db = new mysqli('localhost:8889','root', 'root','mydb');
     /* new mysqli('host:ポート番号','username', 'password','データベース名') */
-    $records = $db->query('select * from my_items');
+    $records = $db->query('select count(*) as cnt from my_items');
     if ($records){
      while ($record = $records->fetch_assoc()){
-       echo $record['item_name'] . '<br>';
+       echo $record['cnt'] . '<br>';
      }
     } 
   ?>
