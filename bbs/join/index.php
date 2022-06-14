@@ -1,4 +1,6 @@
 <?php 
+    session_start();
+    
     $form = [
         'name' => '',
         'email' => '',
@@ -35,9 +37,27 @@
         $image = $_FILES['image'];
         if ($image['name'] !== '' && $image['error'] === 0 ) {
             $type = mime_content_type($image['tmp_name']);
-            if ($type !== 'image/png' && $type !== 'image/jpg'){
+            if ($type !== 'image/png' && $type !== 'image/jpeg'){
                 $error['image'] = 'type';
             }
+        }
+
+        /* フォームの送信 */
+        if (empty($error)){
+            $_SESSION['form'] = $form;
+
+            /* 画像のアップロード */
+            if ($image['name'] !== '' ){
+                $fileneme = date('YmdHis') . '_' . $image['name'];
+                if (!move_uploaded_file($image['tmp_name'], '../member_picture/' . $fileneme )){
+                    die('ファイルのアップロードに失敗しました');
+                }
+                $_SESSION['form'] ['image'] = $fileneme;
+            } else {
+                $_SESSION['name'] ['image'] = '' ;
+            }
+            header('Location: check.php');
+            exit();
         }
      }
 ?>

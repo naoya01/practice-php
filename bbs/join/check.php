@@ -1,3 +1,8 @@
+<?php 
+	session_start();
+	$form = $_SESSION['form'];
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
