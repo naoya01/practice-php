@@ -6,6 +6,7 @@
 	} else {
 		header('Location: index.php');
 		exit();
+		
 	}
 
 	$form = $_SESSION['form'];
